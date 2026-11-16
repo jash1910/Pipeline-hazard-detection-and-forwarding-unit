@@ -5,7 +5,7 @@ register-ID comparators, an EX/MEM + MEM/WB forwarding unit, a load-use hazard
 detection unit and stall/flush control, plus a verification environment that compares
 the design against a stall-only baseline.
 
-**Team:** Jashvitha (lead), Chaitanya, Palak, Samarth. Newton School of Technology, Rishihood University.
+**Team:** Jashvitha, Chaitanya, Palak, Samarth. Newton School of Technology, Rishihood University.
 **Phase I report:** [`docs/IEEE_Phase1_Report.pdf`](docs/IEEE_Phase1_Report.pdf) · **Demo video:** _add link here_
 
 ![block diagram](docs/figures/block_diagram.png)
