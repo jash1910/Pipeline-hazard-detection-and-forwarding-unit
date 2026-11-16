@@ -1,0 +1,20 @@
+
+=================================================================
+ TEST 7 : LW, independent, dependent
+ MODE 2 : forwarding + load-use stall (proposed)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r6, r4, r5
+    I2   SUB  r9, r1, r5
+VCD info: dumpfile simulation/waveforms/test07_mode2.vcd opened for output.
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   0   model   0   hand 0
+  Forward events  DUT   1   model   1   hand 1
+  Total cycles    DUT   7   model   7   (incl. 4-cycle fill)
+  Instructions 3   CPI 2.333   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,7,2,PASS,7,3,0,1

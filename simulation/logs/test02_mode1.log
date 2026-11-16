@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 2 : ADD, AND, SUB (MEM/WB forwarding)
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   ADD  r1, r2, r3
+    I1   AND  r6, r7, r8
+    I2   SUB  r4, r1, r5
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   1   model   1
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   8   model   8   (incl. 4-cycle fill)
+  Instructions 3   CPI 2.666   steady-state CPI 1.333
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,2,1,PASS,8,3,1,0

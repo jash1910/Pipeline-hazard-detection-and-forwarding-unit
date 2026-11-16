@@ -1,0 +1,18 @@
+
+=================================================================
+ TEST 11 : ADDI -> ADD
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   ADDI r1, r2, 7
+    I1   ADD  r6, r1, r3
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   2   model   2
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   8   model   8   (incl. 4-cycle fill)
+  Instructions 2   CPI 4.000   steady-state CPI 2.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,11,1,PASS,8,2,2,0

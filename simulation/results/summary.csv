@@ -1,0 +1,49 @@
+test,name,mode,result,cycles,instructions,stalls,forwards,cpi,steady_state_cpi
+1,ADD->SUB EX/MEM fwd,0,FAIL,6,2,0,0,3.000,1.000
+2,ADD AND SUB MEM/WB fwd,0,FAIL,7,3,0,0,2.333,1.000
+3,LW->ADD load-use,0,FAIL,6,2,0,0,3.000,1.000
+4,double write,0,FAIL,7,3,0,0,2.333,1.000
+5,R0 dependency,0,PASS,6,2,0,0,3.000,1.000
+6,independent,0,PASS,7,3,0,0,2.333,1.000
+7,LW indep dep,0,FAIL,7,3,0,0,2.333,1.000
+8,mixed 11-instr,0,FAIL,15,11,0,0,1.363,1.000
+9,LW->SW,0,FAIL,6,2,0,0,3.000,1.000
+10,LW->ADD->SUB,0,FAIL,7,3,0,0,2.333,1.000
+11,ADDI->ADD,0,FAIL,6,2,0,0,3.000,1.000
+12,ADD->SW data fwd,0,FAIL,6,2,0,0,3.000,1.000
+13,LW indepADD depADD,0,FAIL,7,3,0,0,2.333,1.000
+14,unsupported=NOP,0,PASS,6,1,0,0,6.000,2.000
+15,vector add naive,0,FAIL,25,21,0,0,1.190,1.000
+16,vector add sched,0,FAIL,25,21,0,0,1.190,1.000
+1,ADD->SUB EX/MEM fwd,1,PASS,8,2,2,0,4.000,2.000
+2,ADD AND SUB MEM/WB fwd,1,PASS,8,3,1,0,2.666,1.333
+3,LW->ADD load-use,1,PASS,8,2,2,0,4.000,2.000
+4,double write,1,PASS,9,3,2,0,3.000,1.666
+5,R0 dependency,1,PASS,6,2,0,0,3.000,1.000
+6,independent,1,PASS,7,3,0,0,2.333,1.000
+7,LW indep dep,1,PASS,8,3,1,0,2.666,1.333
+8,mixed 11-instr,1,PASS,33,11,18,0,3.000,2.636
+9,LW->SW,1,PASS,8,2,2,0,4.000,2.000
+10,LW->ADD->SUB,1,PASS,11,3,4,0,3.666,2.333
+11,ADDI->ADD,1,PASS,8,2,2,0,4.000,2.000
+12,ADD->SW data fwd,1,PASS,8,2,2,0,4.000,2.000
+13,LW indepADD depADD,1,PASS,9,3,2,0,3.000,1.666
+14,unsupported=NOP,1,PASS,6,1,0,0,6.000,2.000
+15,vector add naive,1,PASS,43,21,18,0,2.047,1.857
+16,vector add sched,1,PASS,34,21,9,0,1.619,1.428
+1,ADD->SUB EX/MEM fwd,2,PASS,6,2,0,1,3.000,1.000
+2,ADD AND SUB MEM/WB fwd,2,PASS,7,3,0,1,2.333,1.000
+3,LW->ADD load-use,2,PASS,7,2,1,1,3.500,1.500
+4,double write,2,PASS,7,3,0,1,2.333,1.000
+5,R0 dependency,2,PASS,6,2,0,0,3.000,1.000
+6,independent,2,PASS,7,3,0,0,2.333,1.000
+7,LW indep dep,2,PASS,7,3,0,1,2.333,1.000
+8,mixed 11-instr,2,PASS,17,11,2,9,1.545,1.181
+9,LW->SW,2,PASS,7,2,1,1,3.500,1.500
+10,LW->ADD->SUB,2,PASS,8,3,1,2,2.666,1.333
+11,ADDI->ADD,2,PASS,6,2,0,1,3.000,1.000
+12,ADD->SW data fwd,2,PASS,6,2,0,1,3.000,1.000
+13,LW indepADD depADD,2,PASS,7,3,0,1,2.333,1.000
+14,unsupported=NOP,2,PASS,6,1,0,0,6.000,2.000
+15,vector add naive,2,PASS,29,21,4,13,1.380,1.190
+16,vector add sched,2,PASS,25,21,0,8,1.190,1.000

@@ -1,0 +1,41 @@
+
+=================================================================
+ TEST 16 : Vector add, scheduled (21 instr)
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r20)
+    I1   LW   r2, 0(r21)
+    I2   LW   r4, 4(r20)
+    I3   LW   r5, 4(r21)
+    I4   ADD  r3, r1, r2
+    I5   ADD  r6, r4, r5
+    I6   SW   r3, 0(r22)
+    I7   SW   r6, 4(r22)
+    I8   LW   r1, 8(r20)
+    I9   LW   r2, 8(r21)
+    I10  LW   r4, 12(r20)
+    I11  LW   r5, 12(r21)
+    I12  ADD  r9, r9, r3
+    I13  ADD  r9, r9, r6
+    I14  ADD  r7, r1, r2
+    I15  ADD  r8, r4, r5
+    I16  SW   r7, 8(r22)
+    I17  SW   r8, 12(r22)
+    I18  ADD  r9, r9, r7
+    I19  ADD  r9, r9, r8
+    I20  SW   r9, 16(r22)
+  golden mismatch: r6 pipeline=10 golden=27
+  golden mismatch: r9 pipeline=65 golden=136
+  golden mismatch: mem[32] pipeline=5 golden=13
+  golden mismatch: mem[33] pipeline=0 golden=27
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT  25   model  25   (incl. 4-cycle fill)
+  Instructions 21   CPI 1.190   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,16,0,FAIL,25,21,0,0

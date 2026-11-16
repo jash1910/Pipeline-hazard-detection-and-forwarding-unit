@@ -1,0 +1,38 @@
+
+=================================================================
+ TEST 15 : Vector add, naive order (21 instr)
+ MODE 2 : forwarding + load-use stall (proposed)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r20)
+    I1   LW   r2, 0(r21)
+    I2   ADD  r3, r1, r2
+    I3   SW   r3, 0(r22)
+    I4   ADD  r9, r9, r3
+    I5   LW   r1, 4(r20)
+    I6   LW   r2, 4(r21)
+    I7   ADD  r3, r1, r2
+    I8   SW   r3, 4(r22)
+    I9   ADD  r9, r9, r3
+    I10  LW   r1, 8(r20)
+    I11  LW   r2, 8(r21)
+    I12  ADD  r3, r1, r2
+    I13  SW   r3, 8(r22)
+    I14  ADD  r9, r9, r3
+    I15  LW   r1, 12(r20)
+    I16  LW   r2, 12(r21)
+    I17  ADD  r3, r1, r2
+    I18  SW   r3, 12(r22)
+    I19  ADD  r9, r9, r3
+    I20  SW   r9, 16(r22)
+VCD info: dumpfile simulation/waveforms/test15_mode2.vcd opened for output.
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   4   model   4   hand 4
+  Forward events  DUT  13   model  13   hand 13
+  Total cycles    DUT  29   model  29   (incl. 4-cycle fill)
+  Instructions 21   CPI 1.380   steady-state CPI 1.190
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,15,2,PASS,29,21,4,13

@@ -1,0 +1,29 @@
+
+=================================================================
+ TEST 3 : LW -> ADD (load-use, 1 stall)
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+
+  cycle | IF   ID   EX   MEM  WB   | stall fwdA fwdB
+  ------+--------------------------+----------------
+      1 | I0   --   --   --   --   |   0    00   00  
+      2 | I1   I0   --   --   --   |   0    00   00  
+      3 | I2   I1   I0   --   --   |   1    00   00  <- stall: bubble into EX
+      4 | I2   I1   --   I0   --   |   1    00   00  <- stall: bubble into EX
+      5 | I2   I1   --   --   I0   |   0    00   00  
+      6 | I3   --   I1   --   --   |   0    00   00  
+      7 | I4   --   --   I1   --   |   0    00   00  
+      8 | I5   --   --   --   I1   |   0    00   00  
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   2   model   2
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   8   model   8   (incl. 4-cycle fill)
+  Instructions 2   CPI 4.000   steady-state CPI 2.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,3,1,PASS,8,2,2,0

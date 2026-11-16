@@ -1,0 +1,5 @@
+.venv/
+.screenshot_staging/
+simulation/build/
+simulation/build_show/
+.DS_Store

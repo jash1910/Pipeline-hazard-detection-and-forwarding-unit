@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 14 : Unsupported encodings act as NOP
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   .word 0x0043082a   (unsupported -> NOP)
+    I1   ADD  r4, r2, r3
+    I2   .word 0xfc000000   (unsupported -> NOP)
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   6   model   6   (incl. 4-cycle fill)
+  Instructions 1   CPI 6.000   steady-state CPI 2.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,14,1,PASS,6,1,0,0

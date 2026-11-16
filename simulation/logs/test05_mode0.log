@@ -1,0 +1,18 @@
+
+=================================================================
+ TEST 5 : R0 destination is never forwarded
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   ADD  r0, r2, r3
+    I1   SUB  r4, r0, r5
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   6   model   6   (incl. 4-cycle fill)
+  Instructions 2   CPI 3.000   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,5,0,PASS,6,2,0,0

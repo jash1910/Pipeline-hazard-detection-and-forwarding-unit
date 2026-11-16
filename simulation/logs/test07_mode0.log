@@ -1,0 +1,20 @@
+
+=================================================================
+ TEST 7 : LW, independent, dependent
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r6, r4, r5
+    I2   SUB  r9, r1, r5
+  golden mismatch: r9 pipeline=-3 golden=17
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   7   model   7   (incl. 4-cycle fill)
+  Instructions 3   CPI 2.333   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,7,0,FAIL,7,3,0,0

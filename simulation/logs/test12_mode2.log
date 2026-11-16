@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 12 : ADD -> SW (store-data forwarding)
+ MODE 2 : forwarding + load-use stall (proposed)
+=================================================================
+  Program:
+    I0   ADD  r1, r2, r3
+    I1   SW   r1, 0(r4)
+VCD info: dumpfile simulation/waveforms/test12_mode2.vcd opened for output.
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   0   model   0   hand 0
+  Forward events  DUT   1   model   1   hand 1
+  Total cycles    DUT   6   model   6   (incl. 4-cycle fill)
+  Instructions 2   CPI 3.000   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,12,2,PASS,6,2,0,1

@@ -1,0 +1,17 @@
+
+=== Forwarding unit + register-ID comparator + forwarding mux : unit test ===
+  Directed scenarios (consumer reads r5 as operand A):
+  ADD r5 in EX/MEM          -> EX/MEM          forwardA=10  (expected 10) OK
+  ADD r5 in MEM/WB          -> MEM/WB          forwardA=01  (expected 01) OK
+  r5 in both stages         -> EX/MEM wins     forwardA=10  (expected 10) OK
+  LW r5 in EX/MEM (address) -> not a source    forwardA=00  (expected 00) OK
+  LW r5 in MEM/WB (data)    -> MEM/WB          forwardA=01  (expected 01) OK
+  producer writes r0        -> never           forwardA=00  (expected 00) OK
+  SW in EX/MEM (no regwrite)-> no forward      forwardA=00  (expected 00) OK
+  different register r6     -> register file   forwardA=00  (expected 00) OK
+
+  Vectors checked : 32192  (8192 exhaustive + 20000 random + 4000 mux)
+  forwardA = 10 (EX/MEM) seen 269 times, 01 (MEM/WB) seen 524 times
+  Errors          : 0
+  >>> FORWARDING UNIT PASS
+

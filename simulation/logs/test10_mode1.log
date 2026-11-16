@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 10 : LW -> ADD -> SUB (chain)
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+    I2   SUB  r6, r3, r5
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   4   model   4
+  Forward events  DUT   0   model   0
+  Total cycles    DUT  11   model  11   (incl. 4-cycle fill)
+  Instructions 3   CPI 3.666   steady-state CPI 2.333
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,10,1,PASS,11,3,4,0

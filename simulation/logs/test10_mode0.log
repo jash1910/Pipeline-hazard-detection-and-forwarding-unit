@@ -1,0 +1,21 @@
+
+=================================================================
+ TEST 10 : LW -> ADD -> SUB (chain)
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+    I2   SUB  r6, r3, r5
+  golden mismatch: r3 pipeline=5 golden=25
+  golden mismatch: r6 pipeline=2 golden=22
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   7   model   7   (incl. 4-cycle fill)
+  Instructions 3   CPI 2.333   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,10,0,FAIL,7,3,0,0

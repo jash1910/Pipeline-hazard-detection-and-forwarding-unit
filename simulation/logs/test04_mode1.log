@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 4 : Double write: newest value wins
+ MODE 1 : stall-only interlock (baseline)
+=================================================================
+  Program:
+    I0   ADD  r1, r2, r3
+    I1   SUB  r1, r4, r5
+    I2   AND  r6, r1, r7
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   2   model   2
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   9   model   9   (incl. 4-cycle fill)
+  Instructions 3   CPI 3.000   steady-state CPI 1.666
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,4,1,PASS,9,3,2,0

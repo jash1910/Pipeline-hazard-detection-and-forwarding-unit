@@ -1,0 +1,19 @@
+
+=================================================================
+ TEST 9 : LW -> SW (store data from load)
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   SW   r1, 4(r2)
+  golden mismatch: mem[26] pipeline=0 golden=20
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   6   model   6   (incl. 4-cycle fill)
+  Instructions 2   CPI 3.000   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,9,0,FAIL,6,2,0,0

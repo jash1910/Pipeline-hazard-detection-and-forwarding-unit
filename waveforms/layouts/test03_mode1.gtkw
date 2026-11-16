@@ -1,0 +1,84 @@
+[*] GTKWave save file - Pipeline Hazard Detection & Forwarding Unit
+[dumpfile] "../../simulation/waveforms/test03_mode1.vcd"
+[timestart] 0
+[size] 1500 900
+[pos] -1 -1
+*-7.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_processor.
+[treeopen] tb_processor.dut.
+[sst_width] 220
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 260
+@200
+-Clock / reset
+@28
+tb_processor.clk
+@28
+tb_processor.rst
+@200
+-Pipeline: byte PC of the instruction in each stage
+@24
+tb_processor.dut.pc[31:0]
+@24
+tb_processor.dut.ifid_pc[31:0]
+@22
+tb_processor.dut.ifid_instr[31:0]
+@28
+tb_processor.dut.idex_valid
+@24
+tb_processor.dut.idex_pc[31:0]
+@28
+tb_processor.dut.exmem_valid
+@24
+tb_processor.dut.exmem_pc[31:0]
+@28
+tb_processor.dut.memwb_valid
+@24
+tb_processor.dut.memwb_pc[31:0]
+@200
+-Hazard detection + stall/flush control
+@28
+tb_processor.dut.hdu.load_use
+@28
+tb_processor.dut.hdu.raw_hazard
+@28
+tb_processor.dut.stall
+@28
+tb_processor.dut.sfc.pc_write
+@28
+tb_processor.dut.sfc.ifid_write
+@28
+tb_processor.dut.sfc.idex_bubble
+@200
+-Register-ID comparison + forwarding
+@24
+tb_processor.dut.idex_rs[4:0]
+@24
+tb_processor.dut.idex_rt[4:0]
+@24
+tb_processor.dut.exmem_dest[4:0]
+@24
+tb_processor.dut.memwb_dest[4:0]
+@28
+tb_processor.dut.fwdA[1:0]
+@28
+tb_processor.dut.fwdB[1:0]
+@24
+tb_processor.dut.opA[31:0]
+@24
+tb_processor.dut.opB_fwd[31:0]
+@24
+tb_processor.dut.alu_y[31:0]
+@200
+-Performance counters
+@24
+tb_processor.dut.cycles[31:0]
+@24
+tb_processor.dut.stalls[31:0]
+@24
+tb_processor.dut.fwds[31:0]
+@24
+tb_processor.dut.retired[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

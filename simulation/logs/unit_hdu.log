@@ -1,0 +1,22 @@
+
+=== Hazard detection unit (MODE 0/1/2) + stall/flush control : unit test ===
+  Directed scenarios (instruction in ID reads r1, r4):
+  LW  r1 in EX   (load-use)                    MODE1 stall=1  MODE2 stall=1
+  ADD r1 in EX   (distance 1)                  MODE1 stall=1  MODE2 stall=0
+  ADD r1 in MEM  (distance 2)                  MODE1 stall=1  MODE2 stall=0
+  LW  r4 in EX, consumer is SW r4 (data)       MODE1 stall=1  MODE2 stall=1
+  LW  r4 in EX, consumer ADDI ignores rt       MODE1 stall=0  MODE2 stall=0
+  LW  r0 in EX   (R0 never a hazard)           MODE1 stall=0  MODE2 stall=0
+  independent producers                        MODE1 stall=0  MODE2 stall=0
+
+  stall/flush control truth table:
+    stall flush | pc_write ifid_write ifid_flush idex_bubble
+      0     0   |    1         1          0          0
+      0     1   |    1         1          1          1
+      1     0   |    0         0          0          1
+      1     1   |    1         0          1          1
+
+  Vectors checked : 28196 per mode (load-use cases 526, RAW cases 1969)
+  Errors          : 0
+  >>> HAZARD DETECTION UNIT PASS
+

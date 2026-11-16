@@ -1,0 +1,28 @@
+
+=================================================================
+ TEST 8 : Mixed 11-instruction program
+ MODE 2 : forwarding + load-use stall (proposed)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+    I2   SW   r3, 4(r2)
+    I3   LW   r6, 4(r2)
+    I4   ADDI r6, r6, 1
+    I5   ADD  r7, r6, r3
+    I6   SUB  r8, r7, r1
+    I7   AND  r9, r8, r7
+    I8   OR   r10, r9, r8
+    I9   ADDI r11, r10, 5
+    I10  SW   r11, 8(r2)
+VCD info: dumpfile simulation/waveforms/test08_mode2.vcd opened for output.
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   2   model   2   hand 2
+  Forward events  DUT   9   model   9   hand 9
+  Total cycles    DUT  17   model  17   (incl. 4-cycle fill)
+  Instructions 11   CPI 1.545   steady-state CPI 1.181
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,8,2,PASS,17,11,2,9

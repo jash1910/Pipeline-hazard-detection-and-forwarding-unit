@@ -1,0 +1,31 @@
+
+=================================================================
+ TEST 8 : Mixed 11-instruction program
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+    I2   SW   r3, 4(r2)
+    I3   LW   r6, 4(r2)
+    I4   ADDI r6, r6, 1
+    I5   ADD  r7, r6, r3
+    I6   SUB  r8, r7, r1
+    I7   AND  r9, r8, r7
+    I8   OR   r10, r9, r8
+    I9   ADDI r11, r10, 5
+    I10  SW   r11, 8(r2)
+  golden mismatch: r3 pipeline=5 golden=25
+  golden mismatch: r6 pipeline=1 golden=26
+  golden mismatch: r7 pipeline=5 golden=51
+  golden mismatch: r8 pipeline=-1 golden=31
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT  15   model  15   (incl. 4-cycle fill)
+  Instructions 11   CPI 1.363   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,8,0,FAIL,15,11,0,0

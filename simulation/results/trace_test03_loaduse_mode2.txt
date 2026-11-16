@@ -1,0 +1,28 @@
+
+=================================================================
+ TEST 3 : LW -> ADD (load-use, 1 stall)
+ MODE 2 : forwarding + load-use stall (proposed)
+=================================================================
+  Program:
+    I0   LW   r1, 0(r2)
+    I1   ADD  r3, r1, r4
+
+  cycle | IF   ID   EX   MEM  WB   | stall fwdA fwdB
+  ------+--------------------------+----------------
+      1 | I0   --   --   --   --   |   0    00   00  
+      2 | I1   I0   --   --   --   |   0    00   00  
+      3 | I2   I1   I0   --   --   |   1    00   00  <- stall: bubble into EX
+      4 | I2   I1   --   I0   --   |   0    00   00  
+      5 | I3   --   I1   --   I0   |   0    01   00  <- forward MEM/WB
+      6 | I4   --   --   I1   --   |   0    00   00  
+      7 | I5   --   --   --   I1   |   0    00   00  
+
+  Golden model (31 regs + 256 mem words) : MATCH
+  Stall cycles    DUT   1   model   1   hand 1
+  Forward events  DUT   1   model   1   hand 1
+  Total cycles    DUT   7   model   7   (incl. 4-cycle fill)
+  Instructions 2   CPI 3.500   steady-state CPI 1.500
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> PASS
+
+RESULT,3,2,PASS,7,2,1,1

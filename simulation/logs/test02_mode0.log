@@ -1,0 +1,20 @@
+
+=================================================================
+ TEST 2 : ADD, AND, SUB (MEM/WB forwarding)
+ MODE 0 : no hazard handling (broken baseline)
+=================================================================
+  Program:
+    I0   ADD  r1, r2, r3
+    I1   AND  r6, r7, r8
+    I2   SUB  r4, r1, r5
+  golden mismatch: r4 pipeline=-3 golden=12
+
+  Golden model (31 regs + 256 mem words) : MISMATCH
+  Stall cycles    DUT   0   model   0
+  Forward events  DUT   0   model   0
+  Total cycles    DUT   7   model   7   (incl. 4-cycle fill)
+  Instructions 3   CPI 2.333   steady-state CPI 1.000
+  Stall monitor (PC/IF-ID freeze, bubble) : OK
+  >>> FAIL (expected: no hazard handling)
+
+RESULT,2,0,FAIL,7,3,0,0
