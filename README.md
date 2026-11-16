@@ -1,4 +1,4 @@
-# Pipeline Hazard Detection and Forwarding Unit (Project 4)
+# Pipeline Hazard Detection and Forwarding Unit
 
 Verilog implementation of a 5-stage MIPS-style pipeline (IF, ID, EX, MEM, WB) with
 register-ID comparators, an EX/MEM + MEM/WB forwarding unit, a load-use hazard
