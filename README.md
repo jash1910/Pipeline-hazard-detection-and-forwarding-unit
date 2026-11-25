@@ -5,8 +5,7 @@ A Verilog HDL implementation and verification study of data-hazard handling in a
 > **Project:** Project 4 — Pipeline Hazard Detection and Forwarding Unit  
 > **Institution:** Newton School of Technology, Rishihood University  
 > **Team:** Jashvitha, Chaitanya, Palak, and Samarth  
-> **Final IEEE report:** [`IEEE_REPORT/Final_IEEE_Project_Report.pdf`](IEEE_REPORT/Final_IEEE_Project_Report.pdf)  
-> **Phase I report archive:** [`IEEE_REPORT/IEEE_Phase1_Report.pdf`](IEEE_REPORT/IEEE_Phase1_Report.pdf)  
+> **Final IEEE report:** [`IEEE_REPORT/Final_IEEE_Project_Report.pdf`](IEEE_REPORT/Final_IEEE_Project_Report.pdf)   
 > **Project demonstration:** [Open the Google Drive demo folder](https://drive.google.com/drive/folders/1EA9PCPPloYlrJTbqLjpsD-cKfEhgSg1B)
 
 ## Overview
